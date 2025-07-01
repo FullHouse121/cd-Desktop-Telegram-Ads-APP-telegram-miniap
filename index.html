@@ -271,28 +271,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
   </div>
 </footer>
-
-<button id="back-button" class="floating-back">⬅️ Geri Dön</button>
-<script>
-  const tg = window.Telegram.WebApp;
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const backBtn = document.getElementById("back-button");
-
-    if (tg.BackButton) {
-      tg.BackButton.show();
-      tg.BackButton.onClick(() => tg.close());
-    }
-
-    backBtn.addEventListener("click", () => {
-      if (tg.close) {
-        tg.close();
-      } else {
-        window.history.back();
-      }
-    });
-  });
-</script>
 </body>
 </html>
  

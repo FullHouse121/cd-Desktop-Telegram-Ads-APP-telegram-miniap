@@ -3,22 +3,21 @@ tg.expand();
 tg.ready();
 
 document.addEventListener('DOMContentLoaded', () => {
-  
-  const user = tg.initDataUnsafe.user;
-  const usernameOutput = document.getElementById('username-output');
 
+  const user = tg.initDataUnsafe?.user;
+  const usernameOutput = document.getElementById('username-output');
   if (user && usernameOutput) {
     const username = user.username ? `@${user.username}` : user.first_name || 'Ziyaretçi';
     usernameOutput.textContent = username;
   }
 
-  
+
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   anchorLinks.forEach(link => {
     link.addEventListener('click', function (e) {
-      e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
+        e.preventDefault();
         window.scrollTo({
           top: target.offsetTop - 20,
           behavior: 'smooth'
@@ -27,14 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
+ 
   const buttons = document.querySelectorAll('button');
   buttons.forEach(button => {
     button.addEventListener('mouseenter', () => button.classList.add('hovered'));
     button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
   });
 
-  
+
   const images = document.querySelectorAll('img[data-src]');
   const config = {
     rootMargin: '50px 0px',
@@ -60,23 +59,4 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Bu özellik yakında aktif olacak!');
     });
   });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const anchorLinks = document.querySelectorAll('a[href]');
-
-  anchorLinks.forEach(link => {
-    link.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-
-      if (href.startsWith('#')) {
-        e.preventDefault();
-        smoothScroll(href);
-      }
-    });
-  });
-
-  animateButtons();
-  lazyLoadImages();
-  futureFeatureNotice();
 });

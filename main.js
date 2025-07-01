@@ -13,16 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameOutput.textContent = displayName;
   }
 
-  const tg = window.Telegram.WebApp;
-
-document.getElementById("back-btn").addEventListener("click", () => {
-  if (tg && tg.close) {
-    tg.close();
-  } else {
-    window.history.back();
+  
+  const backBtn = document.getElementById("back-btn");
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      if (tg && tg.close) {
+        tg.close();
+      } else {
+        window.history.back();
+      }
+    });
   }
-});
 
+  
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   anchorLinks.forEach(link => {
     link.addEventListener('click', function (e) {
@@ -68,4 +71,3 @@ document.getElementById("back-btn").addEventListener("click", () => {
     });
   });
 });
-

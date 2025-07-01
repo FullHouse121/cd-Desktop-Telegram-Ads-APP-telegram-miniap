@@ -437,16 +437,24 @@ a.bonus-card {
   margin-top: 8px;
 }
 
+.footer-bottom {
+  text-align: center;
+  padding: 1rem 0;
+}
+
 .footer-bottom .links {
-  margin-top: 10px;
-  font-size: 14px;
-  word-break: break-word;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0.5rem;
 }
 
 .footer-bottom .links a {
-  color: #a288ff;
+  color: #b395ff;
   text-decoration: none;
-  margin: 0 8px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .footer-bottom .links a:hover {

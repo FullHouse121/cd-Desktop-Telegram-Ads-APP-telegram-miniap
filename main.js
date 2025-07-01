@@ -1,8 +1,8 @@
-const tg = window.Telegram.WebApp;
-tg.ready();
-tg.expand();
-
 document.addEventListener('DOMContentLoaded', () => {
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+
   const user = tg.initDataUnsafe?.user;
   const usernameOutput = document.getElementById('username-output');
 
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameOutput.textContent = displayName;
   }
 
-  
   const backBtn = document.getElementById("back-btn");
   if (backBtn) {
     backBtn.addEventListener("click", () => {
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  
+ 
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   anchorLinks.forEach(link => {
     link.addEventListener('click', function (e) {
@@ -41,10 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
-  const buttons = document.querySelectorAll('button');
+  const buttons = document.querySelectorAll('button.cta-button');
   buttons.forEach(button => {
     button.addEventListener('mouseenter', () => button.classList.add('hovered'));
     button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
+
+    
+    button.addEventListener('click', () => {
+      document.body.classList.add('loading');
+      setTimeout(() => {
+        document.body.classList.remove('loading');
+      }, 4000); 
+    });
   });
 
   
@@ -62,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   lazyImages.forEach(img => observer.observe(img));
 
-  
+ 
   const comingSoon = document.querySelectorAll('[data-soon]');
   comingSoon.forEach(el => {
     el.addEventListener('click', (e) => {

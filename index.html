@@ -87,7 +87,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
      <a href="https://cutt.ly/Mrc9PjSm">
       <div class="col-full">
-      <img src="static/images/slotin-box.png" alt="Bonus Afişi" />
+      <img src="static/images/caixa-slotin.png" alt="Bonus Afişi" />
       <div class="text-overlay">
       <h3>%200 <br> İlk Yatırım<br />Challenge <br> Bonusu!</h3>
       <button>Katıl</button>
@@ -253,16 +253,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-  <footer class="main-footer">
-    <div class="footer-warning">
-      <div class="age-badge">18+</div>
-      <p>Bahis bir risktir. Bilinçli oynanmasını destekliyoruz. Heyecan kontrolden çıkarsa, profesyonellere başvurun. Amacımız eğlence, bağımlılık değil.</p>
-    </div>
-    <div class="footer-bottom">
-      <p>Telif Hakkı © 2025 Risk.top. Tüm hakları saklıdır.</p>
-      <p class="version">v1.2.0 Güncelleme 18.01.2025</p>
-    </div>
-  </footer>
+<footer class="main-footer">
+  <div class="footer-warning">
+    <div class="age-badge">18+</div>
+    <p>
+      KazananApp yalnızca eğlence amaçlıdır. Kumar risk içerir. Bilinçli oynayın ve sorumluluğun farkında olun.
+      Destek gerekirse profesyonel yardım alın.
+    </p>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="copyright">© 2025 KazananApp. Tüm hakları saklıdır.</p>
+    <p class="version">v1.2.0 • Güncelleme: 18.01.2025</p>
+    <p class="links">
+      <a href="privacy.html" target="_blank">Gizlilik Politikası</a> •
+      <a href="terms.html" target="_blank">Kullanım Koşulları</a>
+    </p>
+  </div>
+</footer>
+
+<button id="back-button" class="floating-back">⬅️ Geri Dön</button>
+<script>
+  const tg = window.Telegram.WebApp;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const backBtn = document.getElementById("back-button");
+
+    if (tg.BackButton) {
+      tg.BackButton.show();
+      tg.BackButton.onClick(() => tg.close());
+    }
+
+    backBtn.addEventListener("click", () => {
+      if (tg.close) {
+        tg.close();
+      } else {
+        window.history.back();
+      }
+    });
+  });
+</script>
 </body>
 </html>
  

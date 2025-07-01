@@ -13,7 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameOutput.textContent = displayName;
   }
 
-  // Smooth scrolling for anchor links
+  const tg = window.Telegram.WebApp;
+
+document.getElementById("back-btn").addEventListener("click", () => {
+  if (tg && tg.close) {
+    tg.close();
+  } else {
+    window.history.back();
+  }
+});
+
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   anchorLinks.forEach(link => {
     link.addEventListener('click', function (e) {
@@ -28,14 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Button hover effects
+  
   const buttons = document.querySelectorAll('button');
   buttons.forEach(button => {
     button.addEventListener('mouseenter', () => button.classList.add('hovered'));
     button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
   });
 
-  // Lazy load images
+  
   const lazyImages = document.querySelectorAll('img[data-src]');
   const observer = new IntersectionObserver((entries, self) => {
     entries.forEach(entry => {
@@ -50,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   lazyImages.forEach(img => observer.observe(img));
 
-  // Feature notice placeholder
+  
   const comingSoon = document.querySelectorAll('[data-soon]');
   comingSoon.forEach(el => {
     el.addEventListener('click', (e) => {
@@ -59,3 +68,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+

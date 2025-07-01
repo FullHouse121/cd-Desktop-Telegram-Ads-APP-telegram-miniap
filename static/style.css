@@ -404,67 +404,67 @@ a.bonus-card {
 }
 
 .main-footer {
-  background-color: #0e0e0e;
+  background-color: #111;
   color: #ccc;
-  font-family: 'Poppins', sans-serif;
-  padding: 30px 20px 40px;
-  text-align: center;
-  border-top: 1px solid #222;
+  padding: 2rem 1rem;
   font-size: 14px;
   line-height: 1.6;
-  position: relative;
-  overflow: hidden;
+  text-align: center;
 }
 
 .footer-warning {
-  margin-bottom: 25px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
 }
 
 .age-badge {
   display: inline-block;
-  background: linear-gradient(135deg, #FFD700, #FFB800);
-  color: #111;
-  font-weight: 600;
-  font-size: 12px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  margin-bottom: 12px;
-}
-
-.footer-warning p {
-  margin: 10px auto;
-  color: #aaa;
+  background-color: #c62828;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
   font-size: 14px;
-  max-width: 600px;
-}
-
-.footer-bottom {
-  border-top: 1px solid #1c1c1c;
-  padding-top: 20px;
-  color: #999;
-}
-
-.footer-bottom p {
-  margin: 6px 0;
 }
 
 .footer-bottom .version {
   font-style: italic;
-  color: #666;
   font-size: 13px;
+  color: #888;
+  margin-top: 8px;
 }
 
-.footer-bottom a {
-  color: #f2c94c;
+.footer-bottom .links {
+  margin-top: 10px;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.footer-bottom .links a {
+  color: #a288ff;
   text-decoration: none;
-  font-weight: 500;
-  margin: 0 6px;
-  transition: color 0.3s ease;
+  margin: 0 8px;
 }
 
-.footer-bottom a:hover {
-  color: #ffffff;
+.footer-bottom .links a:hover {
   text-decoration: underline;
+}
+
+
+@media (max-width: 480px) {
+  .footer-bottom .links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .footer-bottom .links a {
+    margin: 0;
+  }
 }
 
 .floating-back {

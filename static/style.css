@@ -196,23 +196,26 @@ to {
 }
 .promo-card {
   position: relative;
-  background: #1a1a1a;
+  background: linear-gradient(145deg, #1f1f1f, #121212);
   border-radius: 20px;
-  padding: 20px 12px 16px;
-  width: 150px;
+  padding: 22px 14px 18px;
+  width: 160px;
   flex-shrink: 0;
   text-align: center;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    0 0 8px rgba(255, 215, 0, 0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
   overflow: hidden;
-  z-index: 0;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
-.promo-card * {
-  pointer-events: auto;
-}
+
 .promo-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(255, 215, 0, 0.3);
+  transform: scale(1.06);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.7),
+    0 0 14px rgba(255, 215, 0, 0.2);
 }
 .promo-card img {
   width:64px;

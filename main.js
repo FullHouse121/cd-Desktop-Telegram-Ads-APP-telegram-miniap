@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- 
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   anchorLinks.forEach(link => {
     link.addEventListener('click', function (e) {
@@ -39,22 +38,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
+  // Replace all external link clicks with Telegram native openLink for smoother redirection
+  const externalLinks = document.querySelectorAll('a[href^="https://"]');
+  externalLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    link.removeAttribute('href');
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      tg.openLink(href);
+    });
+  });
+
   const buttons = document.querySelectorAll('button.cta-button');
   buttons.forEach(button => {
     button.addEventListener('mouseenter', () => button.classList.add('hovered'));
     button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
-
-    
     button.addEventListener('click', () => {
       document.body.classList.add('loading');
       setTimeout(() => {
         document.body.classList.remove('loading');
-      }, 4000); 
+      }, 2000);
     });
   });
 
-  
   const lazyImages = document.querySelectorAll('img[data-src]');
   const observer = new IntersectionObserver((entries, self) => {
     entries.forEach(entry => {
@@ -69,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   lazyImages.forEach(img => observer.observe(img));
 
- 
   const comingSoon = document.querySelectorAll('[data-soon]');
   comingSoon.forEach(el => {
     el.addEventListener('click', (e) => {

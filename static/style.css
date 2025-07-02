@@ -191,12 +191,13 @@ to {
 }
 .promo-section {
   display: flex;
-  flex-wrap: wrap;
   gap: 16px;
-  justify-content: center;
-  padding: 20px 0;
-  overflow: visible;
-  z-index: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
 }
 
 .promo-section::-webkit-scrollbar {
@@ -215,9 +216,9 @@ to {
     0 8px 16px rgba(0, 0, 0, 0.6),
     0 0 8px rgba(255, 215, 0, 0.08);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  will-change: transform;
+  overflow: visi;
   z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .promo-card:hover {
@@ -225,9 +226,7 @@ to {
   box-shadow:
     0 12px 24px rgba(0, 0, 0, 0.7),
     0 0 14px rgba(255, 215, 0, 0.2);
-  z-index: 10;
 }
-
 .promo-card img {
   width:64px;
   height:64px;
@@ -291,15 +290,9 @@ to {
   box-shadow:0 0 10px rgba(255,215,0,0.6);
   transition:transform 0.3s ease;
 }
-
 .promo-card button:hover {
   transform:scale(1.05);
 }
-
-.card-wrapper, .promo-section {
-  overflow: visible;
-}
-
 .top-sites-list {
   display:flex;
   flex-direction:column;

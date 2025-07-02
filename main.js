@@ -3,12 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   tg.ready();
   tg.expand();
 
-  console.log("Telegram WebApp initialized", tg.initDataUnsafe);
+  const fallbackBackground = '#0e0e0e';
+  const themeBg = tg.themeParams?.bg_color || fallbackBackground;
+  document.body.style.backgroundColor = themeBg;
 
-  
-  const defaultBg = '#0e0e0e';
-  const bgColor = tg.themeParams?.bg_color || defaultBg;
-  document.body.style.backgroundColor = bgColor;
+  console.log("Telegram WebApp initialized", tg.initDataUnsafe);
 
   
   const loaderStyle = document.createElement('style');
@@ -44,10 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const backBtn = document.getElementById("back-btn");
   backBtn?.addEventListener("click", () => {
-    tg.close?.() || window.history.back();
+    if (tg.close) tg.close();
+    else window.history.back();
   });
 
- 
+  
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 🔗 Open external links in Telegram WebApp
+  
   document.querySelectorAll('a[href^="https://"]').forEach(link => {
     const href = link.getAttribute('href');
     link.removeAttribute('href');
@@ -72,20 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ⏳ Add loader animation on important CTA buttons
+  
   document.querySelectorAll('button.cta-button, .play-btn').forEach(button => {
     button.addEventListener('click', () => {
       const loader = document.createElement('div');
       loader.className = 'sophisticated-loader';
       document.body.appendChild(loader);
-
       tg.HapticFeedback?.impactOccurred?.("light");
-
       setTimeout(() => loader.remove(), 1500);
     });
   });
 
-  // 🖼️ Lazy-load images
+  
   const observer = new IntersectionObserver((entries, self) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -98,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { rootMargin: '50px 0px', threshold: 0.01 });
   document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));
 
-
+  
   document.querySelectorAll('[data-soon]').forEach(el => {
     el.addEventListener('click', e => {
       e.preventDefault();
@@ -106,17 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
+ 
   tg.onEvent('themeChanged', () => {
-    document.body.style.backgroundColor = tg.themeParams?.bg_color || defaultBg;
+    document.body.style.backgroundColor = tg.themeParams?.bg_color || fallbackBackground;
   });
 
-
+  
   tg.onEvent('viewportChanged', () => {
     console.log('Viewport changed:', tg.viewportHeight);
   });
 
- 
+  
   if (tg.platform === 'android' && tg.isExpanded) {
     const prompt = document.createElement('div');
     prompt.innerText = '➕ Ana ekrana ekle';

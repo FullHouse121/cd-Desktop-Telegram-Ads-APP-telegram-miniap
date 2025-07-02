@@ -1,11 +1,18 @@
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 document.addEventListener('DOMContentLoaded', () => {
   const tg = window.Telegram.WebApp;
   tg.ready();
   tg.expand();
 
+  
+  if (tg.themeParams.bg_color) {
+    document.body.style.backgroundColor = tg.themeParams.bg_color;
+  }
+
+  
   const user = tg.initDataUnsafe?.user;
   const usernameOutput = document.getElementById('username-output');
-
   if (user && usernameOutput) {
     const displayName = user.username
       ? `@${user.username}`
@@ -13,19 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameOutput.textContent = displayName;
   }
 
+  
   const backBtn = document.getElementById("back-btn");
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      if (tg && tg.close) {
-        tg.close();
-      } else {
-        window.history.back();
-      }
+      if (tg && tg.close) tg.close();
+      else window.history.back();
     });
   }
 
-  const anchorLinks = document.querySelectorAll('a[href^="#"]');
-  anchorLinks.forEach(link => {
+  
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
@@ -39,30 +44,30 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
-  const externalLinks = document.querySelectorAll('a[href^="https://"]');
-  externalLinks.forEach(link => {
+  document.querySelectorAll('a[href^="https://"]').forEach(link => {
     const href = link.getAttribute('href');
     link.removeAttribute('href');
     link.style.cursor = 'pointer';
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      tg.openLink(href);
+      tg.openLink(href, { try_instant_view: true });
     });
   });
 
-  const buttons = document.querySelectorAll('button.cta-button, .play-btn');
-  buttons.forEach(button => {
+  
+  document.querySelectorAll('button.cta-button, .play-btn').forEach(button => {
     button.addEventListener('mouseenter', () => button.classList.add('hovered'));
     button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
     button.addEventListener('click', () => {
       document.body.classList.add('loading');
+      tg.HapticFeedback?.impactOccurred?.("light"); // 🌀 Haptic feedback
       setTimeout(() => {
         document.body.classList.remove('loading');
       }, 2000);
     });
   });
 
-  const lazyImages = document.querySelectorAll('img[data-src]');
+  
   const observer = new IntersectionObserver((entries, self) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -74,15 +79,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { rootMargin: '50px 0px', threshold: 0.01 });
 
-  lazyImages.forEach(img => observer.observe(img));
+  document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));
 
-  const comingSoon = document.querySelectorAll('[data-soon]');
-  comingSoon.forEach(el => {
+  
+  document.querySelectorAll('[data-soon]').forEach(el => {
     el.addEventListener('click', (e) => {
       e.preventDefault();
       alert('Bu özellik yakında aktif olacak!');
     });
   });
+
+  
+  tg.MainButton.setText("🔔 Başla");
+  tg.MainButton.onClick(() => {
+    alert("Kayıt başladı!");
+    tg.close(); 
+  });
+  tg.MainButton.show();
 
   
   tg.onEvent('viewportChanged', () => {
@@ -103,4 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
       addToHomePrompt.remove();
     }, 5000);
   }
+
+ 
+  console.log("Telegram WebApp initialized", tg.initDataUnsafe);
 });
+
+console.log('Telegram WebApp Data:', tg.initDataUnsafe);

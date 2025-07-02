@@ -5,11 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fallbackBackground = '#0e0e0e';
   const themeBg = tg.themeParams?.bg_color || fallbackBackground;
-  document.body.style.backgroundColor = tg.themeParams?.bg_color || '#0e0e0e';
+  document.body.style.backgroundColor = themeBg;
 
   console.log("Telegram WebApp initialized", tg.initDataUnsafe);
 
-  
   const loaderStyle = document.createElement('style');
   loaderStyle.innerHTML = `
     .sophisticated-loader {
@@ -31,23 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(loaderStyle);
 
-  
   const user = tg.initDataUnsafe?.user;
   const usernameOutput = document.getElementById('username-output');
   if (user && usernameOutput) {
-    usernameOutput.textContent = user.username
-      ? `@${user.username}`
-      : user.first_name || 'Ziyaretçi';
+    usernameOutput.textContent = user.username ? `@${user.username}` : user.first_name || 'Ziyaretçi';
   }
 
-  
   const backBtn = document.getElementById("back-btn");
   backBtn?.addEventListener("click", () => {
     if (tg.close) tg.close();
     else window.history.back();
   });
 
-  
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -61,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
   document.querySelectorAll('a[href^="https://"]').forEach(link => {
     const href = link.getAttribute('href');
     link.removeAttribute('href');
@@ -72,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
   document.querySelectorAll('button.cta-button, .play-btn').forEach(button => {
     button.addEventListener('click', () => {
       const loader = document.createElement('div');
@@ -83,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
   const observer = new IntersectionObserver((entries, self) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -94,9 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, { rootMargin: '50px 0px', threshold: 0.01 });
+
   document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));
 
-  
   document.querySelectorAll('[data-soon]').forEach(el => {
     el.addEventListener('click', e => {
       e.preventDefault();
@@ -104,17 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
- 
   tg.onEvent('themeChanged', () => {
     document.body.style.backgroundColor = tg.themeParams?.bg_color || fallbackBackground;
   });
 
-  
   tg.onEvent('viewportChanged', () => {
     console.log('Viewport changed:', tg.viewportHeight);
   });
 
-  
   if (tg.platform === 'android' && tg.isExpanded) {
     const prompt = document.createElement('div');
     prompt.innerText = '➕ Ana ekrana ekle';

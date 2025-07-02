@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fallbackBackground = '#0e0e0e';
   const themeBg = tg.themeParams?.bg_color || fallbackBackground;
-  document.body.style.backgroundColor = themeBg;
+  document.body.style.backgroundColor = tg.themeParams?.bg_color || '#0e0e0e';
 
   console.log("Telegram WebApp initialized", tg.initDataUnsafe);
 

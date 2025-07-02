@@ -38,18 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Replace all external link clicks with Telegram native openLink for smoother redirection
+  
   const externalLinks = document.querySelectorAll('a[href^="https://"]');
   externalLinks.forEach(link => {
     const href = link.getAttribute('href');
     link.removeAttribute('href');
+    link.style.cursor = 'pointer';
     link.addEventListener('click', (e) => {
       e.preventDefault();
       tg.openLink(href);
     });
   });
 
-  const buttons = document.querySelectorAll('button.cta-button');
+  const buttons = document.querySelectorAll('button.cta-button, .play-btn');
   buttons.forEach(button => {
     button.addEventListener('mouseenter', () => button.classList.add('hovered'));
     button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
@@ -82,4 +83,24 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Bu özellik yakında aktif olacak!');
     });
   });
+
+  
+  tg.onEvent('viewportChanged', () => {
+    console.log('Viewport changed:', tg.viewportHeight);
+  });
+
+  tg.onEvent('themeChanged', () => {
+    document.body.style.backgroundColor = tg.themeParams.bg_color || '#ffffff';
+  });
+
+  
+  if (tg.platform === 'android' && tg.isExpanded) {
+    const addToHomePrompt = document.createElement('div');
+    addToHomePrompt.innerText = '➕ Ana ekrana ekle';
+    addToHomePrompt.style.cssText = 'position:fixed;bottom:10px;left:10px;background:#fff;padding:10px;border-radius:10px;z-index:1000;font-weight:bold;color:#111;box-shadow:0 2px 6px rgba(0,0,0,0.15)';
+    document.body.appendChild(addToHomePrompt);
+    setTimeout(() => {
+      addToHomePrompt.remove();
+    }, 5000);
+  }
 });

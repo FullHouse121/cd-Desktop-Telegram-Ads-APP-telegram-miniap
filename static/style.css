@@ -353,22 +353,24 @@ to {
   color:#fff;
 }
 .play-btn {
-  background:linear-gradient(135deg,#ffe600,#ffcc00);
-  color:#111;
-  font-weight:700;
-  padding:10px 20px;
-  font-size:1rem;
-  border:none;
-  border-radius:10%;
-  cursor:pointer;
-  box-shadow:0 4px 15px rgba(255,215,0,0.4),inset 0 0 5px rgba(255,255,255,0.1);
-  transition:all 0.25s ease-in-out;
-  text-shadow:0 1px 1px rgba(255,255,255,0.4);
+  background: linear-gradient(135deg, #ffdf00, #ffb300);
+  color: #0e0e0e;
+  font-weight: 800;
+  padding: 12px 24px;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.5), inset 0 0 6px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.6px;
 }
 .play-btn:hover {
-  background:linear-gradient(135deg,#fff06b,#ffda33);
-  transform:scale(1.05);
-  box-shadow:0 6px 20px rgba(255,215,0,0.6);
+  background: linear-gradient(135deg, #fff06b, #ffd633);
+  transform: scale(1.07);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.7);
 }
 .latest-bonuses {
   display:flex;

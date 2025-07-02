@@ -5,6 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log("Telegram WebApp initialized", tg.initDataUnsafe); 
 
+  const loaderStyle = document.createElement('style');
+    loaderStyle.innerHTML = `
+    .sophisticated-loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 48px;
+        height: 48px;
+        border: 4px solid #FFD700;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+    }
+
+    @keyframes spin {
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    `;
+    document.head.appendChild(loaderStyle);
+
  
   if (tg.themeParams.bg_color) {
     document.body.style.backgroundColor = tg.themeParams.bg_color;
@@ -54,17 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
-  document.querySelectorAll('button.cta-button, .play-btn').forEach(button => {
-    button.addEventListener('mouseenter', () => button.classList.add('hovered'));
-    button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
+   document.querySelectorAll('button.cta-button, .play-btn').forEach(button => {
     button.addEventListener('click', () => {
-      document.body.classList.add('loading');
-      tg.HapticFeedback?.impactOccurred?.("light");
-      setTimeout(() => {
-        document.body.classList.remove('loading');
-      }, 2000);
-    });
+    const loader = document.createElement('div');
+    loader.className = 'sophisticated-loader';
+    document.body.appendChild(loader);
+
+    tg.HapticFeedback?.impactOccurred?.("light");
+
+    setTimeout(() => {
+      loader.remove();
+    }, 1500);
   });
+});
 
   
   const observer = new IntersectionObserver((entries, self) => {
@@ -87,14 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Bu özellik yakında aktif olacak!');
     });
   });
-
-  
-  tg.MainButton.setText("🔔 Başla");
-  tg.MainButton.onClick(() => {
-    alert("Kayıt başladı!");
-    tg.close();
-  });
-  tg.MainButton.show();
 
   
   tg.onEvent('viewportChanged', () => {

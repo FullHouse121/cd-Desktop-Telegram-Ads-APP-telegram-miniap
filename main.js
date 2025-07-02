@@ -28,9 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.head.appendChild(loaderStyle);
 
   
-  if (tg.themeParams.bg_color) {
-    document.body.style.backgroundColor = tg.themeParams.bg_color;
-  }
+  const defaultBg = '#0e0e0e'; 
+  const isInTelegram = window.Telegram.WebApp.initDataUnsafe?.user;
+
+   if (isInTelegram && tg.themeParams.bg_color) {
+   document.body.style.backgroundColor = tg.themeParams.bg_color;
+   } else {
+   document.body.style.backgroundColor = defaultBg;
+   }
 
   
   const user = tg.initDataUnsafe?.user;

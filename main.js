@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log("Telegram WebApp initialized", tg.initDataUnsafe); 
 
+  
   const loaderStyle = document.createElement('style');
-    loaderStyle.innerHTML = `
+  loaderStyle.innerHTML = `
     .sophisticated-loader {
         position: fixed;
         top: 50%;
@@ -20,18 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
         animation: spin 1s linear infinite;
         z-index: 9999;
     }
-
     @keyframes spin {
         to { transform: translate(-50%, -50%) rotate(360deg); }
     }
-    `;
-    document.head.appendChild(loaderStyle);
+  `;
+  document.head.appendChild(loaderStyle);
 
- 
+  
   if (tg.themeParams.bg_color) {
     document.body.style.backgroundColor = tg.themeParams.bg_color;
   }
 
+  
   const user = tg.initDataUnsafe?.user;
   const usernameOutput = document.getElementById('username-output');
   if (user && usernameOutput) {
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameOutput.textContent = displayName;
   }
 
- 
+  
   const backBtn = document.getElementById("back-btn");
   if (backBtn) {
     backBtn.addEventListener("click", () => {
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- 
+  
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
@@ -75,20 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
-   document.querySelectorAll('button.cta-button, .play-btn').forEach(button => {
+  // Loader on button click
+  document.querySelectorAll('button.cta-button, .play-btn').forEach(button => {
     button.addEventListener('click', () => {
-    const loader = document.createElement('div');
-    loader.className = 'sophisticated-loader';
-    document.body.appendChild(loader);
+      const loader = document.createElement('div');
+      loader.className = 'sophisticated-loader';
+      document.body.appendChild(loader);
 
-    tg.HapticFeedback?.impactOccurred?.("light");
+      tg.HapticFeedback?.impactOccurred?.("light");
 
-    setTimeout(() => {
-      loader.remove();
-    }, 1500);
+      setTimeout(() => {
+        loader.remove();
+      }, 1500);
+    });
   });
-});
 
   
   const observer = new IntersectionObserver((entries, self) => {
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));
 
- 
+  
   document.querySelectorAll('[data-soon]').forEach(el => {
     el.addEventListener('click', (e) => {
       e.preventDefault();

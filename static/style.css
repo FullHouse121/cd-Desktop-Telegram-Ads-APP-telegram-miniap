@@ -185,15 +185,20 @@ to {
   box-shadow:0 0 12px rgba(255,215,0,0.6);
 }
 .promo-section {
-  display:flex;
-  gap:16px;
-  overflow-x:auto;
-  padding-bottom:10px;
-  scrollbar-width:none;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
 }
+
 .promo-section::-webkit-scrollbar {
-  display:none;
+  display: none;             
 }
+
 .promo-card {
   position: relative;
   background: linear-gradient(145deg, #1f1f1f, #121212);

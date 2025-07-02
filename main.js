@@ -1,16 +1,15 @@
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-
 document.addEventListener('DOMContentLoaded', () => {
   const tg = window.Telegram.WebApp;
   tg.ready();
   tg.expand();
 
-  
+  console.log("Telegram WebApp initialized", tg.initDataUnsafe); 
+
+ 
   if (tg.themeParams.bg_color) {
     document.body.style.backgroundColor = tg.themeParams.bg_color;
   }
 
-  
   const user = tg.initDataUnsafe?.user;
   const usernameOutput = document.getElementById('username-output');
   if (user && usernameOutput) {
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameOutput.textContent = displayName;
   }
 
-  
+ 
   const backBtn = document.getElementById("back-btn");
   if (backBtn) {
     backBtn.addEventListener("click", () => {
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  
+ 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
@@ -60,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('mouseleave', () => button.classList.remove('hovered'));
     button.addEventListener('click', () => {
       document.body.classList.add('loading');
-      tg.HapticFeedback?.impactOccurred?.("light"); // 🌀 Haptic feedback
+      tg.HapticFeedback?.impactOccurred?.("light");
       setTimeout(() => {
         document.body.classList.remove('loading');
       }, 2000);
@@ -81,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));
 
-  
+ 
   document.querySelectorAll('[data-soon]').forEach(el => {
     el.addEventListener('click', (e) => {
       e.preventDefault();
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tg.MainButton.setText("🔔 Başla");
   tg.MainButton.onClick(() => {
     alert("Kayıt başladı!");
-    tg.close(); 
+    tg.close();
   });
   tg.MainButton.show();
 
@@ -116,9 +115,4 @@ document.addEventListener('DOMContentLoaded', () => {
       addToHomePrompt.remove();
     }, 5000);
   }
-
- 
-  console.log("Telegram WebApp initialized", tg.initDataUnsafe);
 });
-
-console.log('Telegram WebApp Data:', tg.initDataUnsafe);

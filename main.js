@@ -36,6 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameOutput.textContent = user.username ? `@${user.username}` : user.first_name || 'Ziyaretçi';
   }
 
+   fetch('/static/config.json')
+  .then(res => {
+    if (!res.ok) throw new Error("Config not found");
+    return res.json();
+  })
+  .then(data => {
+    console.log(data.app_name, data.features);
+  })
+  .catch(err => console.warn("Config fetch failed:", err));
+
   const backBtn = document.getElementById("back-btn");
   backBtn?.addEventListener("click", () => {
     if (tg.close) tg.close();

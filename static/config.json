@@ -1,0 +1,25 @@
+{
+  "app_name": "KazananApp",
+  "version": "1.0.0",
+  "description": "A safe and engaging mini-app experience for Telegram users.",
+  "features": [
+    "Fast and secure gameplay",
+    "Mobile-friendly interface",
+    "Instant notifications for bonuses",
+    "Safe for review and compliant design"
+  ],
+  "theme": {
+    "primary_color": "#FFD700",
+    "secondary_color": "#0E0E0E",
+    "button_color": "#FFB800"
+  },
+  "endpoints": {
+    "health_check": "/health",
+    "notifications_api": "/api/notifications",
+    "config_api": "/api/config"
+  },
+  "support": {
+    "email": "support@kazananapp.com",
+    "telegram": "@kazanan_support"
+  }
+}

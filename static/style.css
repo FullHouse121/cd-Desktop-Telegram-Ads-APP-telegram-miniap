@@ -217,7 +217,7 @@ to {
     0 8px 16px rgba(0, 0, 0, 0.6),
     0 0 8px rgba(255, 215, 0, 0.08);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
-  overflow: visi;
+  overflow: visible;
   z-index: 1;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -298,6 +298,13 @@ to {
   display:flex;
   flex-direction:column;
   gap:1rem;
+}
+@media (min-width: 768px) {
+  .promo-section {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
+  }
 }
 .top-site-card {
   background:#1c1c1c;

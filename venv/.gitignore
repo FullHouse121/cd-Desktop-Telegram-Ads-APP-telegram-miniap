@@ -1,30 +1,62 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.env
+*.py[cod]
+*$py.class
+
+# Virtual environment
 venv/
 env/
+ENV/
+.venv/
 
+# dotenv / secret files
+.env
+*.env
 
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python egg
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Logs
 *.log
 
-
-.DS_Store
-Thumbs.db
-
-
+# IDEs and editors
 .vscode/
 .idea/
+*.swp
 
-
+# Node (if you ever use npm/yarn)
 node_modules/
 
-
+# SQLite 
 *.sqlite3
 *.db
 
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
 
-dist/
-build/
-*.egg-info/
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# Flask session files
+instance/
+*.pid
+
+# Compiled JS / CSS
+/static/dist/
+/static/build/

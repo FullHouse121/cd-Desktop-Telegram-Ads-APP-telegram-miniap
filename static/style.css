@@ -16,6 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.2s ease-in-out;
 }
+
 .main-header {
   display:flex;
   justify-content:space-between;
@@ -63,6 +64,29 @@ body {
   color: #ccc;
   font-size: 0.9rem;
   margin: 0;
+}
+
+.gif-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.gif-wrapper {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.gif-wrapper img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .brand-name {

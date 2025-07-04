@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="goldGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFB800"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" stroke="url(#goldGradient)" stroke-width="4"/>
+  <path d="M30 60 L50 30 L70 60 Z" fill="url(#goldGradient)" />
+  <text x="50%" y="75%" text-anchor="middle" fill="url(#goldGradient)" font-size="12" font-weight="bold" font-family="Poppins, sans-serif">Slot</text>
+</svg>

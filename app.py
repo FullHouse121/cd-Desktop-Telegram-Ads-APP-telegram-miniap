@@ -1,9 +1,9 @@
 from flask import Flask, render_template, send_from_directory, jsonify, request
-from flask import send_from_directory
 from flask_cors import CORS
 import os
 import logging
-
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(
     __name__,
@@ -12,7 +12,6 @@ app = Flask(
 )
 
 CORS(app)
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -58,6 +57,15 @@ def robots():
     return '', 204
 
 
+@app.route('/sitemap.xml')
+def sitemap():
+    """Serve sitemap.xml"""
+    sitemap_path = os.path.join('.', 'sitemap.xml')
+    if os.path.isfile(sitemap_path):
+        return send_from_directory('.', 'sitemap.xml')
+    return '', 204
+
+
 @app.route('/<path:path>')
 def catch_all(path):
     """
@@ -90,7 +98,3 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     debug_mode = os.environ.get("FLASK_ENV", "").lower() == "development"
     app.run(host="0.0.0.0", port=port, debug=debug_mode)
-
-@app.route('/sitemap.xml')
-def sitemap():
-    return send_from_directory('.', 'sitemap.xml')

@@ -286,6 +286,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
   </div>
 
+  <div id="popup-overlay" class="popup-overlay">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup()">×</button>
+    <img src="static/images/deneme-bonusu1.jpg" alt="Bonus" class="popup-img" />
+    <a href="https://plinkoland.com/Y6JCtmjn?external_id={{click_id}}&source=telegram&sub_id_1={{channel}}&sub_id_2={{bot}}&sub_id_3={{campaign}}&sub_id_4={{creative}}&sub_id_5={{message_id}}" class="popup-button">GİRİŞ YAP</a>
+  </div>
+</div>
+
+<script>
+  window.onload = function () {
+    setTimeout(() => {
+      document.getElementById("popup-overlay").style.display = "flex";
+    }, 1000); // show popup after 1 second
+  };
+
+  function closePopup() {
+    document.getElementById("popup-overlay").style.display = "none";
+  }
+</script>
+
   <div class="footer-bottom">
     <p class="copyright">© 2025 KazananApp. Tüm hakları saklıdır.</p>
     <p class="version">v1.2.0 • Güncelleme: 18.01.2025</p>

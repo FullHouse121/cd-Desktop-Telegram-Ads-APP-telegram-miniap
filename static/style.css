@@ -614,6 +614,60 @@ a.bonus-card {
   box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
 }
 
+.info-section {
+  padding: 24px;
+  background: #0e0e0e;
+  border-top: 1px solid #222;
+  text-align: center;
+}
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #151515;
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.suggest-box {
+  background: linear-gradient(135deg, #02101f, #001e3c);
+  border: 1px solid #1d437a;
+  border-radius: 12px;
+  padding: 16px;
+  color: #fff;
+  text-align: left;
+}
+
+.suggest-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.suggest-button {
+  display: inline-block;
+  background: #2980ff;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.info-footer {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.risk-logo {
+  height: 20px;
+}
+
 
 
 @media (max-width: 480px) {

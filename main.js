@@ -131,12 +131,21 @@ const messaging = firebase.messaging();
 Notification.requestPermission().then((permission) => {
   if (permission === 'granted') {
     messaging.getToken({
-      vapidKey: 'YOUR_PUBLIC_VAPID_KEY_FROM_FIREBASE'
+      vapidKey: "BL788cXu6kCb29erZdv2xpiuHoCoLz_x1E0mlTIQzraNBAOf4Bk8dIrwEp-YxtnDT1qM9qzcT8fzmuMzOZ_WvM0"
     }).then((currentToken) => {
       if (currentToken) {
         console.log("Your FCM Token:", currentToken);
-        // TODO: Send token to your server for sending messages later
+        // ✅ OPTIONAL: send token to your server here
+        // fetch('/save-token', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ token: currentToken })
+        // });
       }
+    }).catch((err) => {
+      console.error('Token error:', err);
     });
+  } else {
+    console.warn('Notification permission not granted');
   }
 });

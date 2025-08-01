@@ -1,3 +1,5 @@
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
 document.addEventListener('DOMContentLoaded', () => {
   const tg = window.Telegram.WebApp;
   tg.ready();
@@ -148,4 +150,10 @@ Notification.requestPermission().then((permission) => {
   } else {
     console.warn('Notification permission not granted');
   }
+});
+
+fetch('https://yourserver.com/save-token', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ token })
 });

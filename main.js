@@ -135,18 +135,22 @@ Notification.requestPermission().then((permission) => {
       vapidKey: "BL788cXu6kCb29erZdv2xpiuHoCoLz_x1E0mlTIQzraNBAOf4Bk8dIrwEp-YxtnDT1qM9qzcT8fzmuMzOZ_WvM0"
     }).then((currentToken) => {
       if (currentToken) {
-        console.log("Your FCM Token:", currentToken);
-        // ✅ OPTIONAL: send token to your server here
+        console.log("🎯 Your FCM Token:", currentToken);
+
+        // OPTIONAL: send token to backend if you later set up a server
         // fetch('/save-token', {
         //   method: 'POST',
         //   headers: { 'Content-Type': 'application/json' },
         //   body: JSON.stringify({ token: currentToken })
         // });
+
+      } else {
+        console.warn("❌ No token received. Permission may be blocked.");
       }
     }).catch((err) => {
-      console.error('Token error:', err);
+      console.error('🚫 Token error:', err);
     });
   } else {
-    console.warn('Notification permission not granted');
+    console.warn('🚫 Notification permission not granted');
   }
 });

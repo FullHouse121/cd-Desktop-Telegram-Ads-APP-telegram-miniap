@@ -420,11 +420,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     measurementId: "G-Z6FYQBVDBT"
   };
 
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const messaging = firebase.messaging();
 
-  // Register the service worker
   navigator.serviceWorker.register('/firebase-messaging-sw.js')
     .then((registration) => {
       console.log("✅ Service Worker registered:", registration);
@@ -438,13 +436,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             serviceWorkerRegistration: registration
           }).then((token) => {
             console.log("🎯 Current token:", token);
-            // You can now paste this token into Firebase Cloud Messaging for testing
+            // You can send this token to Firebase or your backend
           }).catch((err) => {
             console.error("❌ Error getting token:", err);
           });
 
+          // ✅ Display browser notification in foreground
           messaging.onMessage((payload) => {
             console.log("📩 Foreground message received:", payload);
+
+            if (Notification.permission === "granted") {
+              new Notification(payload.notification?.title || "📢 Bildirim", {
+                body: payload.notification?.body || "Yeni bir bildirim aldınız.",
+                icon: "https://kazananapp.com/icon.png"
+              });
+            }
           });
 
         } else {

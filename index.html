@@ -408,60 +408,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBHlPiVLpuDIct-iKYEfJ6a5L9nH1P6Tf4",
-      authDomain: "kazananapp-8e1ed.firebaseapp.com",
-      projectId: "kazananapp-8e1ed",
-      storageBucket: "kazananapp-8e1ed.appspot.com",
-      messagingSenderId: "717843836467",
-      appId: "1:717843836467:web:043c11376042dac16dfd46",
-      measurementId: "G-Z6FYQBVDBT"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyBHlPiVLpuDIct-iKYEfJ6a5L9nH1P6Tf4",
+    authDomain: "kazananapp-8e1ed.firebaseapp.com",
+    projectId: "kazananapp-8e1ed",
+    storageBucket: "kazananapp-8e1ed.appspot.com",
+    messagingSenderId: "717843836467",
+    appId: "1:717843836467:web:043c11376042dac16dfd46",
+    measurementId: "G-Z6FYQBVDBT"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const messaging = getMessaging(app);
+  const app = initializeApp(firebaseConfig);
+  const messaging = getMessaging(app);
 
-    // Request permission and get token
-    Notification.requestPermission().then(permission => {
-      if (permission === "granted") {
-        getToken(messaging, {
-          vapidKey: "BL788cXu6kCb29erZdv2xpiuHoCoLz_x1E0mlTIQzraNBAOf4Bk8dIrwEp-YxtnDT1qM9qzcT8fzmuMzOZ_WvM0"
-        }).then((currentToken) => {
-          if (currentToken) {
-            console.log("✅ Token:", currentToken);
-            // TODO: Send token to your server
-          } else {
-            console.warn("❌ Token alınamadı.");
-          }
-        }).catch((err) => {
-          console.error("❌ Token hatası:", err);
-        });
-
-        // Foreground notification
-        onMessage(messaging, (payload) => {
-          console.log("📩 Bildirim (foreground):", payload);
-          alert(payload.notification.title + "\n" + payload.notification.body);
-        });
-      } else {
-        console.warn("🚫 Bildirim izni verilmedi.");
-      }
-    });
-
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+  // Register the service worker
+  navigator.serviceWorker.register('/firebase-messaging-sw.js')
     .then((registration) => {
-      console.log('🛡️ Service Worker registered successfully:', registration);
-    })
-    .catch((error) => {
-      console.error('❌ Service Worker registration failed:', error);
+      console.log("✅ Service Worker registered:", registration);
+
+      // Request permission
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log("🔔 Notification permission granted.");
+
+          getToken(messaging, {
+            vapidKey: "BL788cXu6kCb29erZdv2xpiuHoCoLz_x1E0mlTIQzraNBAOf4Bk8dIrwEp-YxtnDT1qM9qzcT8fzmuMzOZ_WvM0",
+            serviceWorkerRegistration: registration
+          }).then((token) => {
+            console.log("🎯 Current token:", token);
+            // Optional: Send this token to your server
+          }).catch((err) => {
+            console.error("❌ Error getting token:", err);
+          });
+
+          onMessage(messaging, (payload) => {
+            console.log("📩 Foreground message received:", payload);
+          });
+
+        } else {
+          console.warn("🚫 Notification permission not granted.");
+        }
+      });
+
+    }).catch((err) => {
+      console.error("❌ Service Worker registration failed:", err);
     });
-}
-  </script>
+</script>
 
 
 </body>

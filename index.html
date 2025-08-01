@@ -443,15 +443,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           // ✅ Display browser notification in foreground
           messaging.onMessage((payload) => {
-            console.log("📩 Foreground message received:", payload);
+          console.log("📩 Foreground message received:", payload);
 
-            if (Notification.permission === "granted") {
-              new Notification(payload.notification?.title || "📢 Bildirim", {
-                body: payload.notification?.body || "Yeni bir bildirim aldınız.",
-                icon: "static/images/favicon.svg"
-              });
-            }
-          });
+          // ✅ Show notification when browser is open
+          if (Notification.permission === "granted") {
+            new Notification(payload.notification?.title || "📢 Bildirim", {
+              body: payload.notification?.body || "Yeni bir bildirim aldınız.",
+              icon: payload.notification?.image || "static/images/favicon.svg"
+            });
+          }
+        });
 
         } else {
           console.warn("🚫 Notification permission not granted.");

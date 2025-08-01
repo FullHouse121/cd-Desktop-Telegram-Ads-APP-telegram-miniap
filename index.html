@@ -448,7 +448,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (Notification.permission === "granted") {
               new Notification(payload.notification?.title || "📢 Bildirim", {
                 body: payload.notification?.body || "Yeni bir bildirim aldınız.",
-                icon: "https://kazananapp.com/icon.png"
+                icon: "static/images/favicon.svg"
               });
             }
           });

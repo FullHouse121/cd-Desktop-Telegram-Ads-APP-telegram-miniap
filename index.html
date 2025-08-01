@@ -35,6 +35,8 @@
   <meta property="og:type" content="website" />
   <script src="https://telegram.org/js/telegram-web-app.js" defer></script>
   <script src="https://kazananapp.com/main.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-messaging-compat.js"></script>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -405,5 +407,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
   </div>
 </footer>
+
+<script>
+  // Replace this config with your Firebase project config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBVRuKaod50BvdaKP2tr516NBD9-p6JtXc",
+    authDomain: "kazananapp.firebaseapp.com",
+    projectId: "kazananapp",
+    storageBucket: "kazananapp.firebasestorage.app",
+    messagingSenderId: "181140671000",
+    appId: "1:181140671000:web:4a446b0aea93bda061d16d",
+    measurementId: "G-ZBHE4FJM6E"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
 </body>
 </html>

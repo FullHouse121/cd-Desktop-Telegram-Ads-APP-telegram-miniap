@@ -126,4 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+const messaging = firebase.messaging();
 
+Notification.requestPermission().then((permission) => {
+  if (permission === 'granted') {
+    messaging.getToken({
+      vapidKey: 'YOUR_PUBLIC_VAPID_KEY_FROM_FIREBASE'
+    }).then((currentToken) => {
+      if (currentToken) {
+        console.log("Your FCM Token:", currentToken);
+        // TODO: Send token to your server for sending messages later
+      }
+    });
+  }
+});

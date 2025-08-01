@@ -15,12 +15,12 @@ firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function(payload) {
-  console.log("📦 Arka planda bildirim:", payload);
+  console.log("📥 Received background message: ", payload);
 
-  const notificationTitle = payload.notification.title;
+  const notificationTitle = payload.notification?.title || "📢 Bildirim";
   const notificationOptions = {
-    body: payload.notification.body,
-    icon: "https://kazananapp.com/icon.png"
+    body: payload.notification?.body || "Yeni bir bildirim aldınız.",
+    icon: "https://kazananapp.com/icon.png" 
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);

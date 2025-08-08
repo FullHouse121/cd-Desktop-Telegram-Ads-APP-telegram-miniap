@@ -136,6 +136,63 @@ p{font-size:var(--fs-md);line-height:1.65;margin:0 0 10px}
 .stick{position:sticky; bottom:10px; z-index:5}
 .stick .cta{margin:10px 0 0}
 
+.main-footer {
+  color: #ccc;
+  padding: 2rem 1rem;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.footer-warning {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+
+.age-badge {
+  display: inline-block;
+  background-color: #c62828;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-bottom .version {
+  font-style: italic;
+  font-size: 13px;
+  color: #888;
+  margin-top: 8px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.footer-bottom .links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0.5rem;
+}
+
+.footer-bottom .links a {
+  color: #b395ff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.footer-bottom .links a:hover {
+  text-decoration: underline;
+}
+
 /* Desktop / tablet */
 @media (min-width:700px){
   .hero{display:grid; grid-template-columns:300px 1fr; gap:16px; align-items:center}
@@ -256,7 +313,7 @@ p{font-size:var(--fs-md);line-height:1.65;margin:0 0 10px}
 
     <!-- Sticky CTA on mobile -->
     <div class="stick">
-      <a class="cta" href="https://kazananapp.com/sweetbonanza">Hemen Oyna</a>
+      <a class="cta" href="https://kazananapp.com/sweetbonanza">Sweet Bonanza</a>
     </div>
 
     <p style="color:#8f8f8f;font-size:12px;margin:10px 2px 20px">KazananApp bilgilendirme amaçlı içerik sunar. Lütfen sorumlu oynayın ve yerel düzenlemelere uyun.</p>
@@ -268,5 +325,34 @@ p{font-size:var(--fs-md);line-height:1.65;margin:0 0 10px}
     q.addEventListener('click',()=> q.parentElement.classList.toggle('open'));
   });
 </script>
+
+<footer class="main-footer">
+  <div class="footer-warning">
+    <div class="age-badge">18+</div>
+    <p>
+      KazananApp yalnızca eğlence amaçlıdır. Kumar risk içerir. Bilinçli oynayın ve sorumluluğun farkında olun.
+      Destek gerekirse profesyonel yardım alın.
+    </p>
+  </div>
+
+  <div class="footer-social">
+    <a href="https://t.me/Kazananapp_bot" target="_blank" aria-label="Telegram" style="margin-right: 10px;">
+      <img src="static/images/telegram-alt-svgrepo-com.svg" alt="Telegram" width="24" height="24">
+    </a>
+    <a href="https://instagram.com/sugarrushsites" target="_blank" aria-label="Instagram">
+      <img src="static/images/instagram-svgrepo-com.svg" alt="Instagram" width="24" height="24">
+    </a>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="copyright">© 2025 KazananApp. Tüm hakları saklıdır.</p>
+    <p class="version">v1.2.0 • Güncelleme: 18.01.2025</p>
+    <p class="links">
+      <a href="privacy.html" target="_blank">Gizlilik Politikası</a>
+      <a href="terms.html" target="_blank">Kullanım Koşulları</a>
+    </p>
+  </div>
+</footer>
+
 </body>
 </html>

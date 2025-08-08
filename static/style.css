@@ -737,17 +737,23 @@ a.bonus-card {
 }
 
 /* Logo box */
+/* make the logo box bigger and square */
 .offer-logo {
-  width:98px; height:66px; border-radius:14px; background:#0b0b0b;
+  width:120px; height:120px;
+  border-radius:16px;
+  background:#0b0b0b;
   display:grid; place-items:center;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  padding:0;            /* remove extra padding */
 }
-.offer-logo img { 
-  display:block;      /* prevents inline-gap quirks */
-  max-width:82%; 
-  max-height:82%; 
-  object-fit:contain; 
-  filter: drop-shadow(0 0 6px rgba(0,0,0,.4));
+
+/* fill the box cleanly */
+.offer-logo img{
+  width:100%; height:100%;
+  object-fit:cover;     /* fills the box */
+  border-radius:12px;   /* soft corners inside the box */
+  display:block;        /* no stray gaps */
+  filter:none;          /* optional: remove drop shadow */
 }
 /* Rating and text */
 .offer-rating { color:#FFD84D; font-weight:700; margin-top:6px; }

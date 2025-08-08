@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KazananApp • Sweet Bonanza</title>
+<meta name="description" content="Sweet Bonanza tanıtımı: RTP, volatilite, özellikler, ücretsiz dönüşler ve oyun içi ipuçları.">
+<style>
+  :root{
+  /* Colors */
+  --bg:#0b0b0b; --surface1:#151515; --surface2:#101010;
+  --ink:#f2f2f2; --muted:#bdbdbd; --stroke:rgba(255,255,255,.07);
+  --gold:#ffd028; --gold-ink:#0c0c0c; --gold-deep:#b08b0a;
+  --accent:#2d7cff; --rating:#ffe26a;
+
+  /* Elevation */
+  --elev-1:0 8px 22px rgba(0,0,0,.45);
+  --elev-2:0 14px 36px rgba(0,0,0,.55);
+
+  /* Radii */
+  --r-xl:22px; --r-lg:18px; --r-md:14px; --r-sm:10px;
+
+  /* Layout */
+  --max:860px;
+  --gap:12px;
+
+  /* Type scale */
+  --fs-xxl: clamp(28px, 3.1vw, 36px);
+  --fs-xl: 26px;
+  --fs-lg: 20px;
+  --fs-md: 15px;
+  --fs-sm: 13px;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+.wrap{max-width:var(--max);margin:0 auto;padding:14px;}
+img{max-width:100%;height:auto;display:block}
+
+/* Headings & text */
+h1{font-size:var(--fs-xxl);line-height:1.15;margin:12px 0 6px}
+h2{font-size:var(--fs-lg);margin:0 0 10px}
+p{font-size:var(--fs-md);line-height:1.65;margin:0 0 10px}
+.lead{color:var(--muted)}
+
+/* Brand */
+.brand{
+  display:inline-block; padding:8px 12px; border-radius:999px;
+  background:linear-gradient(180deg,var(--surface1),var(--surface2));
+  box-shadow:inset 0 0 0 1px var(--stroke);
+  color:#ddd; font-weight:900; letter-spacing:.2px;
+}
+
+/* HERO */
+.hero{margin:12px 0 6px}
+.cover{
+  width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden;
+  background:#0e0e0e; box-shadow:inset 0 0 0 1px var(--stroke);
+}
+.cover img{width:100%;height:100%;object-fit:cover}
+
+/* Pills */
+.pills{display:flex; gap:8px; overflow-x:auto; padding:2px 1px 10px; scroll-snap-type:x proximity}
+.pill{
+  scroll-snap-align:start;
+  white-space:nowrap; border-radius:999px; padding:8px 12px;
+  background:#141414; color:#ddd; font-weight:800; font-size:var(--fs-sm);
+  box-shadow:inset 0 0 0 1px var(--stroke);
+}
+.pill.rating{
+  color:var(--gold-ink);
+  background:linear-gradient(180deg,#ffe98e,#ffd028);
+  box-shadow:0 2px 0 var(--gold-deep);
+}
+
+/* Bonus banner */
+.bonus{
+  margin:10px 0; border-radius:14px; padding:12px;
+  background:linear-gradient(180deg,#2b2518,#18120b);
+  box-shadow:inset 0 0 0 1px rgba(255,208,40,.25);
+}
+.bonus .title{color:#ffd890;font-weight:900;margin-bottom:6px; letter-spacing:.2px}
+.bonus .line{
+  border:1px solid rgba(255,216,144,.35); border-radius:10px; padding:10px 12px;
+  font-weight:900; color:#ffe6a8; background:rgba(0,0,0,.15);
+}
+
+/* CTA */
+.cta{
+  display:block; text-align:center; margin:12px 0; padding:12px;
+  background:var(--gold); color:#000; font-weight:900; border-radius:12px;
+  box-shadow:0 8px 0 var(--gold-deep), var(--elev-1);
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.cta:hover{transform:translateY(-2px); box-shadow:0 10px 0 var(--gold-deep), var(--elev-2); filter:saturate(1.05)}
+.cta:active{transform:translateY(0); box-shadow:0 7px 0 var(--gold-deep), var(--elev-1)}
+.cta:focus-visible{outline:3px solid #fff2; outline-offset:2px}
+
+/* Gallery (snap slider) */
+.gallery{
+  display:flex; gap:10px; overflow-x:auto; padding:6px 0 10px;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+}
+.shot{
+  flex:0 0 78%; max-width:78%; aspect-ratio:16/9; scroll-snap-align:start;
+  border-radius:14px; overflow:hidden; background:#0d0d0d;
+  box-shadow:inset 0 0 0 1px var(--stroke);
+}
+.gallery::-webkit-scrollbar{height:6px}
+.gallery::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:4px}
+
+/* Cards */
+.card{
+  background:linear-gradient(180deg,var(--surface1),var(--surface2));
+  border-radius:var(--r-lg); padding:16px;
+  box-shadow:var(--elev-1), inset 0 0 0 1px var(--stroke);
+  margin:12px 0;
+}
+.card p{margin-bottom:6px}
+
+/* Accordion */
+.acc{border:1px solid #1f1f1f; border-radius:14px; overflow:hidden; margin:8px 0}
+.acc-q{
+  background:#141414; padding:12px 14px; font-weight:900; cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.acc-q::after{content:"▾"; opacity:.7}
+.acc.open .acc-q::after{content:"▴"}
+.acc-a{display:none; background:#0f0f0f; padding:12px 14px; color:var(--muted)}
+.acc.open .acc-a{display:block}
+
+/* Sticky CTA */
+.stick{position:sticky; bottom:10px; z-index:5}
+.stick .cta{margin:10px 0 0}
+
+/* Desktop / tablet */
+@media (min-width:700px){
+  .hero{display:grid; grid-template-columns:300px 1fr; gap:16px; align-items:center}
+  .cover{aspect-ratio:auto; height:260px}
+  .shot{flex:0 0 48%; max-width:48%}
+  .pills{gap:10px}
+}
+
+/* Motion & accessibility */
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important; scroll-behavior:auto!important}
+}
+:focus-visible{outline:2px solid #ffffff33; outline-offset:2px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="brand" href="/">KazananApp</a>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="cover">
+        <img src="/static/images/cover-sweet-bonanza.webp" alt="Sweet Bonanza kapak" onerror="this.src='/static/images/placeholder-wide.jpg'">
+      </div>
+      <div>
+        <h1>Sweet Bonanza</h1>
+        <p class="lead">Şeker temalı, scatter-pay mekaniği ve Ücretsiz Dönüşlerde yüksek çarpan bombalarıyla öne çıkan popüler slot.</p>
+
+        <div class="pills">
+          <span class="pill rating">★ 4.9/5.0</span>
+          <span class="pill">RTP: %96.51</span>
+          <span class="pill">Volatilite: Orta–Yüksek</span>
+          <span class="pill">Düzen: 6×5 • Scatter Pay</span>
+        </div>
+
+        <!-- Bonus banner (optional) -->
+        <div class="bonus">
+          <div class="title">Mevcut Bonus</div>
+          <div class="line">%500 İlk Yatırım + 100 FS</div>
+        </div>
+
+        <a class="cta" href="https://kazananapp.com/sweetbonanza">Hemen Oyna</a>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <div class="gallery">
+      <div class="shot"><img src="/static/images/sb-shot-1.jpg" alt="Sweet Bonanza ekran görüntüsü 1" onerror="this.src='/static/images/placeholder-wide.jpg'"></div>
+      <div class="shot"><img src="/static/images/sb-shot-2.jpg" alt="Sweet Bonanza ekran görüntüsü 2" onerror="this.src='/static/images/placeholder-wide.jpg'"></div>
+      <div class="shot"><img src="/static/images/sb-shot-3.jpg" alt="Sweet Bonanza ekran görüntüsü 3" onerror="this.src='/static/images/placeholder-wide.jpg'"></div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="card">
+      <h2>Genel Bakış</h2>
+      <p>Sweet Bonanza, 6×5 düzende <em>scatter-pay</em> sistemiyle oynanır: aynı sembolden 8+ göründüğünde ödeme alırsın. Kazanan semboller patlar, yenileri düşer (tumble). Ücretsiz Dönüşlerde 2×–100× çarpan bombaları toplanır ve toplam kazancı çarpar.</p>
+    </section>
+
+    <!-- HOW TO PLAY -->
+    <section class="card">
+      <h2>Nasıl Oynanır</h2>
+      <ul style="margin:0 0 6px 18px">
+        <li>Bahsini seç ve çevir. Pozisyon önemli değil; 8+ aynı sembol yeterli.</li>
+        <li>Kazançlar patlar, yeni semboller düşer; tek turda seri kazanç mümkün.</li>
+        <li>4+ Lollipop Scatter → 10 Ücretsiz Dönüş (yeniden tetikle +5).</li>
+        <li>Bonus turunda 2×–100× çarpan bombaları toplam kazancı katlar.</li>
+        <li>Ante Bet / Bonus Satın Al bazı sürümlerde bulunur.</li>
+      </ul>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="card">
+      <h2>Öne Çıkan Özellikler</h2>
+      <ul style="margin:0 0 6px 18px">
+        <li>Tumble Kazançlar (ardışık ödemeler).</li>
+        <li>Ücretsiz Dönüşler ve yeniden tetikleme.</li>
+        <li>2×–100× Çarpan Bombaları (toplanır ve çarpar).</li>
+        <li>Mobil uyumlu, hızlı oynanış.</li>
+      </ul>
+    </section>
+
+    <!-- PAYTABLE (accordion items for mobile) -->
+    <section class="card">
+      <h2>Ödeme Tablosu (Özet)</h2>
+
+      <div class="acc">
+        <div class="acc-q">Yüksek Semboller</div>
+        <div class="acc-a">Kalp/Kare şekerler yüksek ödeme grubu; 12+ sembolde en yüksek değerleri verir.</div>
+      </div>
+
+      <div class="acc">
+        <div class="acc-q">Orta & Düşük Semboller</div>
+        <div class="acc-a">Üzümler, karpuz, erik, elma ve muz daha sık ama daha düşük öder.</div>
+      </div>
+
+      <div class="acc">
+        <div class="acc-q">Scatter & Çarpan</div>
+        <div class="acc-a">4+ Lollipop Scatter Ücretsiz Dönüşleri açar. Bonus sırasında rastgele 2×–100× çarpan bombaları toplam kazanımı çarpar.</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="card">
+      <h2>SSS</h2>
+      <div class="acc">
+        <div class="acc-q">RTP ve volatilite nedir?</div>
+        <div class="acc-a">RTP genelde %96.51 civarında, volatilite Orta–Yüksek’tir (operatöre göre değişebilir).</div>
+      </div>
+      <div class="acc">
+        <div class="acc-q">Ücretsiz Dönüşleri nasıl açarım?</div>
+        <div class="acc-a">Aynı turda 4+ Scatter geldiğinde 10 dönüş başlar; yeniden tetikleme +5 dönüş ekler.</div>
+      </div>
+      <div class="acc">
+        <div class="acc-q">Çarpanlar toplanır mı?</div>
+        <div class="acc-a">Evet. Bir turda birden fazla çarpan bombası düşerse, değerleri toplanır ve toplam kazanç çarpılır.</div>
+      </div>
+    </section>
+
+    <!-- Sticky CTA on mobile -->
+    <div class="stick">
+      <a class="cta" href="https://kazananapp.com/sweetbonanza">Hemen Oyna</a>
+    </div>
+
+    <p style="color:#8f8f8f;font-size:12px;margin:10px 2px 20px">KazananApp bilgilendirme amaçlı içerik sunar. Lütfen sorumlu oynayın ve yerel düzenlemelere uyun.</p>
+  </div>
+
+<script>
+  // Simple accordion
+  document.querySelectorAll('.acc-q').forEach(q=>{
+    q.addEventListener('click',()=> q.parentElement.classList.toggle('open'));
+  });
+</script>
+</body>
+</html>

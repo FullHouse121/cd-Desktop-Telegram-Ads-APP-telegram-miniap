@@ -744,18 +744,18 @@ a.bonus-card {
   background:#0b0b0b;
   display:grid; place-items:center;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
-  padding:0;            /* remove extra padding */
+  padding:0;            
 }
 
-/* fill the box cleanly */
+
 .offer-logo img{
   width:100%; height:100%;
-  object-fit:cover;     /* fills the box */
-  border-radius:12px;   /* soft corners inside the box */
-  display:block;        /* no stray gaps */
-  filter:none;          /* optional: remove drop shadow */
+  object-fit:cover;     
+  border-radius:12px;   
+  display:block;        
+  filter:none;          
 }
-/* Rating and text */
+
 .offer-rating { color:#FFD84D; font-weight:700; margin-top:6px; }
 .offer-sub {
   color:#eaeaea; font-weight:800; letter-spacing:.4px;
@@ -766,7 +766,7 @@ a.bonus-card {
   min-height:36px;
 }
 
-/* Button */
+
 .offer-btn {
   margin-top:auto;
   display:inline-block; width:100%; text-align:center;
